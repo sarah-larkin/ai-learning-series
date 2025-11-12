@@ -73,7 +73,7 @@ try:
     from google.cloud import aiplatform
     print("✅ google-cloud-aiplatform installed")
 except ImportError:
-    print("❌ google-cloud-aiplatform not found")
+    print("❌ google-cloud-aiplatform not found")  #TODO check why this is not found
 
 try:
     import streamlit
