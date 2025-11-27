@@ -3,6 +3,7 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 import json
 
+
 # Load environment variables from .env file
 load_dotenv()
 
@@ -75,56 +76,56 @@ class SimpleBot:
         self.conversation_history = []
 
 
-def main():
-    """Main function to run the chatbot"""
-    print("🤖 Welcome to the Simple Chatbot!")
-    print("Type 'quit' to exit, 'clear' to clear history\n")
+# def main():
+#     """Main function to run the chatbot"""
+#     print("🤖 Welcome to the Simple Chatbot!")
+#     print("Type 'quit' to exit, 'clear' to clear history\n")
 
-    # Load WCC FAQs
-    with open("wcc_faqs.json") as f:
-        wcc_data = json.load(f)
+#     # Load WCC FAQs
+#     with open("wcc_faqs.json") as f:
+#         wcc_data = json.load(f)
 
-    # Create FAQ context
-    faq_text = "\n".join([
-        f"Q: {faq['question']}\nA: {faq['answer']}"
-        for faq in wcc_data["faqs"]
-    ])
+#     # Create FAQ context
+#     faq_text = "\n".join([
+#         f"Q: {faq['question']}\nA: {faq['answer']}"
+#         for faq in wcc_data["faqs"]
+#     ])
 
-    # Create system prompt with WCC knowledge
-    system_prompt = f"""You are a friendly WCC (Women Coding Community) assistant.
-    Your role is to help members learn about WCC, answer questions, and encourage participation.
+#     # Create system prompt with WCC knowledge
+#     system_prompt = f"""You are a friendly WCC (Women Coding Community) assistant.
+#     Your role is to help members learn about WCC, answer questions, and encourage participation.
 
-    Here are the FAQs you should reference:
-    {faq_text}
+#     Here are the FAQs you should reference:
+#     {faq_text}
 
-    Be warm, encouraging, and inclusive. If you don't know something, suggest they contact the WCC team.
-    """
-    bot = SimpleBot(system_prompt=system_prompt)
+#     Be warm, encouraging, and inclusive. If you don't know something, suggest they contact the WCC team.
+#     """
+#     bot = SimpleBot(system_prompt=system_prompt)
 
-    while True:
-        try:
-            user_input = input("You: ").strip()
+#     while True:
+#         try:
+#             user_input = input("You: ").strip()
 
-            if not user_input:
-                continue
+#             if not user_input:
+#                 continue
 
-            if user_input.lower() == "quit":
-                print("Goodbye! 👋")
-                break
+#             if user_input.lower() == "quit":
+#                 print("Goodbye! 👋")
+#                 break
 
-            if user_input.lower() == "clear":
-                bot.clear_history()
-                print("Conversation history cleared.\n")
-                continue
+#             if user_input.lower() == "clear":
+#                 bot.clear_history()
+#                 print("Conversation history cleared.\n")
+#                 continue
 
-            # Get response from bot
-            response = bot.chat(user_input)
-            print(f"\nBot: {response}\n")
+#             # Get response from bot
+#             response = bot.chat(user_input)
+#             print(f"\nBot: {response}\n")
 
-        except KeyboardInterrupt:
-            print("\n\nGoodbye! 👋")
-            break
+#         except KeyboardInterrupt:
+#             print("\n\nGoodbye! 👋")
+#             break
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

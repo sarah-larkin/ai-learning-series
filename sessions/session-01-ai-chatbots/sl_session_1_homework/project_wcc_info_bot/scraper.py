@@ -4,8 +4,7 @@ import json
 
 def scrape_wcc_events():
     """Scrape upcoming events from WCC website"""
-    # Replace with actual WCC website URL
-    url = "https://womencoding.community/events"
+    url = "https://www.womencodingcommunity.com/events" #TODO: No events coming up, is there an API for this? 
     
     try:
         response = requests.get(url)
@@ -24,14 +23,14 @@ def scrape_wcc_events():
         print(f"Error scraping: {e}")
         return []
 
-# Use in chatbot
-events = scrape_wcc_events()
-events_text = "\n".join([
-    f"- {e['title']} on {e['date']}: {e['description']}"
-    for e in events
-])
+# # Use in chatbot
+# events = scrape_wcc_events()
+# events_text = "\n".join([
+#     f"- {e['title']} on {e['date']}: {e['description']}"
+#     for e in events
+# ])
 
-system_prompt = f"""You are a WCC assistant.
-Upcoming events:
-{events_text}
-"""
+# system_prompt = f"""You are a WCC assistant.
+# Upcoming events:
+# {events_text}
+# """

@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 from sl_chatbot import SimpleBot
+from scraper import scrape_wcc_events
 
 st.set_page_config(page_title="WCC Info Bot", page_icon="🤖")
 
@@ -16,11 +17,21 @@ faq_text = "\n".join([
     for faq in wcc_data["faqs"]
 ])
 
+#adding in scraper - NOT WORKING YET
+events = scrape_wcc_events()
+events_text = "\n".join([
+    f"- {e['title']} on {e['date']}: {e['description']}"
+    for e in events
+])
+
 system_prompt = f"""You are a friendly WCC (Women Coding Community) assistant.
     Your role is to help members learn about WCC, answer questions, and encourage participation.
 
     Here are the FAQs you should reference:
     {faq_text}
+
+    Here are the upcomng events:
+    {events_text}
 
     Be warm, encouraging, and inclusive. If you don't know something, suggest they contact the WCC team.
     """
